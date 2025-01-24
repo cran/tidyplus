@@ -8,7 +8,6 @@ test_that("unite_str works character", {
 
 test_that("unite_str works symbol", {
   data <- tibble::tibble(x = c("good", "Saw fish.", NA), y = c("2021", NA, NA))
-  skip("get unite_str working with symbol!")
   data <- unite_str(data, new, x, y)
   expect_s3_class(data, "tbl_df")
   expect_identical(colnames(data), "new")
@@ -72,14 +71,16 @@ test_that("unite_str matches same", {
 })
 
 test_that("unite_str matches new sf as string", {
+  skip_if_not_installed("sf")
   data <- dplyr::tribble(
-    ~comment, ~comment.x,  ~x, ~y,
-    "text",   NA, 0, 0,
-    NA,   "", 1, 0,
-    "",   "text3", 2, 0)
-  
+    ~comment, ~comment.x, ~x, ~y,
+    "text", NA, 0, 0,
+    NA, "", 1, 0,
+    "", "text3", 2, 0
+  )
+
   data <- sf::st_as_sf(data, coords = c("x", "y"), dim = "XY")
-  
+
   data <- unite_str(data, "comment2", tidyr::matches("comment"))
   expect_s3_class(data, "tbl_df")
   expect_s3_class(data, "sf")

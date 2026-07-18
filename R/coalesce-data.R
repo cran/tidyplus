@@ -28,15 +28,19 @@ coalesce_data <- function(x, coalesce = list(), quiet = FALSE) {
   chk_list(coalesce)
   chk_flag(quiet)
 
-  if (!length(coalesce)) return(x)
-  if (!ncol(x)) return(x)
+  if (!length(coalesce)) {
+    return(x)
+  }
+  if (!ncol(x)) {
+    return(x)
+  }
 
   chk_named(coalesce)
   chk_unique(names(coalesce))
   chk_all(coalesce, chk_character)
   chk_all(coalesce, check_dim, values = TRUE)
   chk_all(coalesce, chk_not_any_na)
-  
+
   sf <- vld_s3_class(x, "sf")
 
   if (sf) {

@@ -1,4 +1,12 @@
-<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# tidyplus 0.2.1 (2026-07-18)
+
+- Fixed bug in `add_missing_column()` where the function would error if one column was present and one was missing.
+- Fixed bug in `str_to_snake_case()` so only a single underscore is added between words (#35).
+- Updated documentation (#42).
+- Added/corrected author ORCID(s) in DESCRIPTION (#37).
+- Internal changes (#36, #39, #40).
 
 # tidyplus 0.2.0
 
